@@ -49,19 +49,19 @@ for i in ${arr[*]}; do
 			echo "IS_NAT is true"
                 	if [  ! ${TARGET_HOST} ]; then
 				echo "TARGET_HOST is null"
-				sudo docker service create -d --name ${SERVICE_NAME}   -e "MS_NAME=${SERVICE_NAME}"  -e "ENV_VALUE=${ENV_VALUE}" --mount type=bind,source=${prodPath},destination=/product/mserver -p ${SERVICE_PORT}:${SERVICE_PORT}   mserver:v3  /product/mserver/run_jar.sh
+				sudo docker service create -d --name ${SERVICE_NAME}   -e "MS_NAME=${SERVICE_NAME}"  -e "ENV_VALUE=${ENV_VALUE}" --mount type=bind,source=${prodPath},destination=/product/mserver -p ${SERVICE_PORT}:${SERVICE_PORT}   jybaby1027/mserver:v3  /product/mserver/run_jar.sh
                 	else 
 				echo "TARGET_HOST is not null"
-				sudo docker service create -d --name ${SERVICE_NAME}   -e "MS_NAME=${SERVICE_NAME}"  -e "ENV_VALUE=${ENV_VALUE}" --mount type=bind,source=${prodPath},destination=/product/mserver -p ${SERVICE_PORT}:${SERVICE_PORT} --constraint node.hostname==${TARGET_HOST}  mserver:v3  /product/mserver/run_jar.sh
+				sudo docker service create -d --name ${SERVICE_NAME}   -e "MS_NAME=${SERVICE_NAME}"  -e "ENV_VALUE=${ENV_VALUE}" --mount type=bind,source=${prodPath},destination=/product/mserver -p ${SERVICE_PORT}:${SERVICE_PORT} --constraint node.hostname==${TARGET_HOST}  jybaby1027/mserver:v3  /product/mserver/run_jar.sh
 			fi
         	else
 			echo "IS_NAT is false"
 			if [  ! ${TARGET_HOST} ]; then
                                 echo "TARGET_HOST is null"
-				sudo docker service create -d --name ${SERVICE_NAME}   -e "MS_NAME=${SERVICE_NAME}"  -e "ENV_VALUE=${ENV_VALUE}" --mount type=bind,source=${prodPath},destination=/product/mserver  mserver:v3  /product/mserver/run_jar.sh
+				sudo docker service create -d --name ${SERVICE_NAME}   -e "MS_NAME=${SERVICE_NAME}"  -e "ENV_VALUE=${ENV_VALUE}" --mount type=bind,source=${prodPath},destination=/product/mserver  jybaby1027/mserver:v3  /product/mserver/run_jar.sh
                         else
                                 echo "TARGET_HOST is not null"
-				sudo docker service create -d --name ${SERVICE_NAME}   -e "MS_NAME=${SERVICE_NAME}"  -e "ENV_VALUE=${ENV_VALUE}" --mount type=bind,source=${prodPath},destination=/product/mserver  --constraint node.hostname==${TARGET_HOST}  mserver:v3  /product/mserver/run_jar.sh
+				sudo docker service create -d --name ${SERVICE_NAME}   -e "MS_NAME=${SERVICE_NAME}"  -e "ENV_VALUE=${ENV_VALUE}" --mount type=bind,source=${prodPath},destination=/product/mserver  --constraint node.hostname==${TARGET_HOST}  jybaby1027/mserver:v3  /product/mserver/run_jar.sh
                         fi
 		fi	
 	else
@@ -70,22 +70,22 @@ for i in ${arr[*]}; do
                   	echo "IS_NAT is true"
 		        if [  ! ${TARGET_HOST} ]; then
                                 echo "TARGET_HOST is null"
-				sudo docker service create -d --name ${SERVICE_NAME}  --network ${OVERLAY_NET}  -e "MS_NAME=${SERVICE_NAME}"  -e "ENV_VALUE=${ENV_VALUE}" --mount type=bind,source=${prodPath},destination=/product/mserver -p ${SERVICE_PORT}:${SERVICE_PORT}  mserver:v3  /product/mserver/run_jar.sh
+				sudo docker service create -d --name ${SERVICE_NAME}  --network ${OVERLAY_NET}  -e "MS_NAME=${SERVICE_NAME}"  -e "ENV_VALUE=${ENV_VALUE}" --mount type=bind,source=${prodPath},destination=/product/mserver -p ${SERVICE_PORT}:${SERVICE_PORT}  jybaby1027/mserver:v3  /product/mserver/run_jar.sh
                         else
                                 echo "TARGET_HOST is not null"
-				sudo docker service create -d  --name ${SERVICE_NAME}  --network ${OVERLAY_NET}  -e "MS_NAME=${SERVICE_NAME}"  -e "ENV_VALUE=${ENV_VALUE}" --mount type=bind,source=${prodPath},destination=/product/mserver -p ${SERVICE_PORT}:${SERVICE_PORT} --constraint node.hostname==${TARGET_HOST}  mserver:v3  /product/mserver/run_jar.sh
+				sudo docker service create -d  --name ${SERVICE_NAME}  --network ${OVERLAY_NET}  -e "MS_NAME=${SERVICE_NAME}"  -e "ENV_VALUE=${ENV_VALUE}" --mount type=bind,source=${prodPath},destination=/product/mserver -p ${SERVICE_PORT}:${SERVICE_PORT} --constraint node.hostname==${TARGET_HOST}  jybaby1027/mserver:v3  /product/mserver/run_jar.sh
                         fi
                 else
                         echo "IS_NAT is false"
                         if [  ! ${TARGET_HOST} ]; then
                                 echo "TARGET_HOST is null"
-				sudo docker service create -d --name ${SERVICE_NAME}  --network ${OVERLAY_NET}  -e "MS_NAME=${SERVICE_NAME}"  -e "ENV_VALUE=${ENV_VALUE}" --mount type=bind,source=${prodPath},destination=/product/mserver  mserver:v3  /product/mserver/run_jar.sh
+				sudo docker service create -d --name ${SERVICE_NAME}  --network ${OVERLAY_NET}  -e "MS_NAME=${SERVICE_NAME}"  -e "ENV_VALUE=${ENV_VALUE}" --mount type=bind,source=${prodPath},destination=/product/mserver  jybaby1027/mserver:v3  /product/mserver/run_jar.sh
                         else
                                 echo "TARGET_HOST is not null"
 				if [  "${IS_UPLOAD}" = "true" ]; then
-					sudo docker service create -d --name ${SERVICE_NAME}  --network ${OVERLAY_NET}  -e "MS_NAME=${SERVICE_NAME}"  -e "ENV_VALUE=${ENV_VALUE}" --mount type=bind,source=${prodPath},destination=/product/mserver --mount type=bind,source=${uploadPath},destination=${uploadPath}  --constraint node.hostname==${TARGET_HOST}  mserver:v3  /product/mserver/run_jar.sh
+					sudo docker service create -d --name ${SERVICE_NAME}  --network ${OVERLAY_NET}  -e "MS_NAME=${SERVICE_NAME}"  -e "ENV_VALUE=${ENV_VALUE}" --mount type=bind,source=${prodPath},destination=/product/mserver --mount type=bind,source=${uploadPath},destination=${uploadPath}  --constraint node.hostname==${TARGET_HOST}  jybaby1027/mserver:v3  /product/mserver/run_jar.sh
 				else
-					sudo docker service create -d --name ${SERVICE_NAME}  --network ${OVERLAY_NET}  -e "MS_NAME=${SERVICE_NAME}"  -e "ENV_VALUE=${ENV_VALUE}" --mount type=bind,source=${prodPath},destination=/product/mserver  --constraint node.hostname==${TARGET_HOST}  mserver:v3  /product/mserver/run_jar.sh
+					sudo docker service create -d --name ${SERVICE_NAME}  --network ${OVERLAY_NET}  -e "MS_NAME=${SERVICE_NAME}"  -e "ENV_VALUE=${ENV_VALUE}" --mount type=bind,source=${prodPath},destination=/product/mserver  --constraint node.hostname==${TARGET_HOST}  jybaby1027/mserver:v3  /product/mserver/run_jar.sh
                         	fi
 			fi
                 fi

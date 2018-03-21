@@ -45,19 +45,19 @@ for i in ${arr[*]}; do
                 echo "IS_NAT is true"
              if [   "${IS_UPLOAD}" = "true" ]; then
                 echo "IS_UPLOAD is true"
-                sudo docker run -d --name ${SERVICE_NAME}   -e "MS_NAME=${SERVICE_NAME}"  -e "ENV_VALUE=${ENV_VALUE}" -v ${prodPath}:/product/mserver -v ${uploadPath}:${uploadPath}  -p ${SERVICE_PORT}:${SERVICE_PORT}   mserver:v3  /product/mserver/run_jar.sh
+                sudo docker run -d --name ${SERVICE_NAME}   -e "MS_NAME=${SERVICE_NAME}"  -e "ENV_VALUE=${ENV_VALUE}" -v ${prodPath}:/product/mserver -v ${uploadPath}:${uploadPath}  -p ${SERVICE_PORT}:${SERVICE_PORT}   jybaby1027/mserver:v3  /product/mserver/run_jar.sh
              else
 		echo "IS_UPLOAD is false"
-		sudo docker run -d --name ${SERVICE_NAME}   -e "MS_NAME=${SERVICE_NAME}"  -e "ENV_VALUE=${ENV_VALUE}" -v ${prodPath}:/product/mserver  -p ${SERVICE_PORT}:${SERVICE_PORT}   mserver:v3  /product/mserver/run_jar.sh
+		sudo docker run -d --name ${SERVICE_NAME}   -e "MS_NAME=${SERVICE_NAME}"  -e "ENV_VALUE=${ENV_VALUE}" -v ${prodPath}:/product/mserver  -p ${SERVICE_PORT}:${SERVICE_PORT}   jybaby1027/mserver:v3  /product/mserver/run_jar.sh
 	     fi
         else
                 echo "IS_NAT is false"
              if [   "${IS_UPLOAD}" = "true" ]; then
                 echo "IS_UPLOAD is true"
-                sudo docker run -d --name ${SERVICE_NAME}   -e "MS_NAME=${SERVICE_NAME}"  -e "ENV_VALUE=${ENV_VALUE}" -v ${prodPath}:/product/mserver -v ${uploadPath}:${uploadPath}    mserver:v3  /product/mserver/run_jar.sh
+                sudo docker run -d --name ${SERVICE_NAME}   -e "MS_NAME=${SERVICE_NAME}"  -e "ENV_VALUE=${ENV_VALUE}" -v ${prodPath}:/product/mserver -v ${uploadPath}:${uploadPath}    jybaby1027/mserver:v3  /product/mserver/run_jar.sh
              else
                 echo "IS_UPLOAD is false"
-                sudo docker run -d --name ${SERVICE_NAME}   -e "MS_NAME=${SERVICE_NAME}"  -e "ENV_VALUE=${ENV_VALUE}" -v ${prodPath}:/product/mserver    mserver:v3  /product/mserver/run_jar.sh
+                sudo docker run -d --name ${SERVICE_NAME}   -e "MS_NAME=${SERVICE_NAME}"  -e "ENV_VALUE=${ENV_VALUE}" -v ${prodPath}:/product/mserver    jybaby1027/mserver:v3  /product/mserver/run_jar.sh
 	     fi
         fi
     fi;
